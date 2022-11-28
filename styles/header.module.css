@@ -1,0 +1,21 @@
+.title {
+    padding: 16px;
+    font: bold;
+    font-size: 30px;
+}
+
+.navbar {
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.navbarButtonsContainer {
+    display: flex;
+    align-items: center;
+}
+.navbarButton {
+    padding: 24px;
+    margin-right: 16px;
+}
