@@ -1,6 +1,19 @@
 import Head from "next/head";
+import { useQuery, gql } from "@apollo/client";
+
+const GET_ACTIVE_CANDIDATES = gql`
+    {
+        activeCandidates {
+            id
+            candidateId
+            votes
+        }
+    }
+`;
 
 export default function Home() {
+    const { loading, error, data } = useQuery(GET_ACTIVE_CANDIDATES);
+    console.log(data);
     return (
         <div>
             <Head>
