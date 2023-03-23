@@ -1,0 +1,13 @@
+.mainContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.buttonContainer {
+    display: flex;
+    justify-content: space-around;
+    padding-top: 20px;
+    width: 400px;
+}
