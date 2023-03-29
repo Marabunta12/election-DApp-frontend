@@ -1,4 +1,5 @@
 import Head from "next/head";
+import React, { useState } from "react";
 import Web3NotEnabled from "../components/Web3NotEnabled";
 import { useMoralis, useWeb3Contract } from "react-moralis";
 import styles from "../styles/admin.module.css";
@@ -15,6 +16,9 @@ export default function Home() {
     const { runContractFunction } = useWeb3Contract();
     const dispatch = useNotification();
 
+    const [candidateFormKey, setCandidateFormKey] = useState(100);
+    const [voterFormKey, setVoterFormKey] = useState(0);
+
     async function addVoter(data) {
         const votersAddress = data.data[0].inputResult;
 
@@ -30,6 +34,7 @@ export default function Home() {
             onSuccess: () => handleAddVoterSuccess(),
             onError: (error) => handleAddVoterFailure(error),
         });
+        setVoterFormKey(voterFormKey + 1);
     }
     async function handleAddVoterSuccess() {
         dispatch({
@@ -64,6 +69,7 @@ export default function Home() {
             onSuccess: () => handleAddCandidateSuccess(),
             onError: (error) => handleAddCandidateFailure(error),
         });
+        setCandidateFormKey(candidateFormKey + 1);
     }
     async function handleAddCandidateSuccess() {
         dispatch({
@@ -156,6 +162,7 @@ export default function Home() {
                 {isWeb3Enabled ? (
                     <div className={styles.mainContainer}>
                         <Form
+                            key={voterFormKey}
                             buttonConfig={{
                                 text: "Add",
                                 theme: "primary",
@@ -171,6 +178,7 @@ export default function Home() {
                             onSubmit={addVoter}
                         />
                         <Form
+                            key={candidateFormKey}
                             buttonConfig={{
                                 text: "Add",
                                 theme: "primary",

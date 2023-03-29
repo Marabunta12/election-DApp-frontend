@@ -28,7 +28,8 @@ export default function Home() {
     const { loading, error, data } = useQuery(GET_ACTIVE_CANDIDATES);
     const { runContractFunction } = useWeb3Contract();
     const dispatch = useNotification();
-    const [formKey, setFormKey] = useState(0);
+
+    const [voteFormKey, setVoteFormKey] = useState(0);
 
     async function vote(data) {
         const candidateId = data.data[0].inputResult;
@@ -45,7 +46,7 @@ export default function Home() {
             onSuccess: () => handleVoteSuccess(),
             onError: (error) => handleVoteFailure(error),
         });
-        setFormKey(formKey + 1);
+        setVoteFormKey(voteFormKey + 1);
     }
 
     async function handleVoteSuccess() {
@@ -114,7 +115,7 @@ export default function Home() {
                                 noPagination
                             />
                             <Form
-                                key={formKey}
+                                key={voteFormKey}
                                 buttonConfig={{
                                     text: "Vote",
                                     theme: "primary",
