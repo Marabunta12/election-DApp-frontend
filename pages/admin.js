@@ -22,7 +22,7 @@ export default function Home() {
             abi: electionAbi,
             contractAddress: electionAddress,
             functionName: "addVoter",
-            params: { votersAddress: votersAddress },
+            params: { voterAddress: votersAddress },
         };
 
         await runContractFunction({

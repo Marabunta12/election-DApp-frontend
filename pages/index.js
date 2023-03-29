@@ -89,52 +89,48 @@ export default function Home() {
                             isLoading
                         />
                     ) : (
-                        data.activeCandidates.map((activeCandidate) => {
-                            const { candidateId, candidateName, votes } = activeCandidate;
-                            return (
-                                <div>
-                                    <Table
-                                        columnsConfig="0px 2fr 2fr 2fr 0px"
-                                        customNoDataText="There are no candidates to vote"
-                                        data={[
-                                            [
-                                                <div></div>,
-                                                <div>{candidateId}</div>,
-                                                <div>{candidateName}</div>,
-                                                <div>{votes}</div>,
-                                                <div></div>,
-                                            ],
-                                        ]}
-                                        header={[
-                                            "",
-                                            <span>Candidate ID</span>,
-                                            <span>Name</span>,
-                                            <span>Votes</span>,
-                                            "",
-                                        ]}
-                                        noPagination
-                                    />
-                                    <Form
-                                        buttonConfig={{
-                                            text: "Vote",
-                                            theme: "primary",
-                                        }}
-                                        data={[
-                                            {
-                                                name: "Choose ID",
-                                                type: "number",
-                                                validation: {
-                                                    numberMin: 0,
-                                                },
-                                                key: "candidateId",
-                                            },
-                                        ]}
-                                        onSubmit={vote}
-                                        title="Vote for candidate"
-                                    />
-                                </div>
-                            );
-                        })
+                        <>
+                            <Table
+                                columnsConfig="0px 2fr 2fr 2fr 0px"
+                                customNoDataText="There are no candidates to vote"
+                                data={data.activeCandidates.map((activeCandidate) => {
+                                    const { candidateId, candidateName, votes } = activeCandidate;
+                                    return [
+                                        <div></div>,
+                                        <div>{candidateId}</div>,
+                                        <div>{candidateName}</div>,
+                                        <div>{votes}</div>,
+                                        <div></div>,
+                                    ];
+                                })}
+                                header={[
+                                    "",
+                                    <span>Candidate ID</span>,
+                                    <span>Name</span>,
+                                    <span>Votes</span>,
+                                    "",
+                                ]}
+                                noPagination
+                            />
+                            <Form
+                                buttonConfig={{
+                                    text: "Vote",
+                                    theme: "primary",
+                                }}
+                                data={[
+                                    {
+                                        name: "Choose ID",
+                                        type: "number",
+                                        validation: {
+                                            numberMin: 0,
+                                        },
+                                        key: "candidateId",
+                                    },
+                                ]}
+                                onSubmit={vote}
+                                title="Vote for candidate"
+                            />
+                        </>
                     )
                 ) : (
                     <Web3NotEnabled></Web3NotEnabled>
