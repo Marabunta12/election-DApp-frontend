@@ -6,7 +6,7 @@ import { NotificationProvider } from "@web3uikit/core";
 
 const client = new ApolloClient({
     cache: new InMemoryCache(),
-    uri: "https://api.studio.thegraph.com/query/38859/voting-dapp/v0.0.3",
+    uri: "https://api.studio.thegraph.com/query/38859/voting-dapp-goerli/v0.0.1",
 });
 
 function MyApp({ Component, pageProps }) {

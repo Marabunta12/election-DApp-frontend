@@ -12,6 +12,7 @@ const GET_ACTIVE_CANDIDATES = gql`
         activeCandidates {
             id
             candidateId
+            candidateName
             votes
         }
     }
@@ -26,6 +27,8 @@ export default function Home() {
     const { loading, error, data } = useQuery(GET_ACTIVE_CANDIDATES);
     const { runContractFunction } = useWeb3Contract();
     const dispatch = useNotification();
+
+    console.log(data);
 
     async function vote(data) {
         const candidateId = data.data[0].inputResult;
@@ -87,7 +90,7 @@ export default function Home() {
                         />
                     ) : (
                         data.activeCandidates.map((activeCandidate) => {
-                            const { candidateId, votes } = activeCandidate;
+                            const { candidateId, candidateName, votes } = activeCandidate;
                             return (
                                 <div>
                                     <Table
@@ -97,7 +100,7 @@ export default function Home() {
                                             [
                                                 <div></div>,
                                                 <div>{candidateId}</div>,
-                                                <div>Placeholder Name</div>,
+                                                <div>{candidateName}</div>,
                                                 <div>{votes}</div>,
                                                 <div></div>,
                                             ],
