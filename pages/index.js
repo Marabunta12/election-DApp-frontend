@@ -1,4 +1,5 @@
 import Head from "next/head";
+import React, { useState } from "react";
 import { useQuery, gql } from "@apollo/client";
 import { useMoralis, useWeb3Contract } from "react-moralis";
 import styles from "../styles/index.module.css";
@@ -27,8 +28,7 @@ export default function Home() {
     const { loading, error, data } = useQuery(GET_ACTIVE_CANDIDATES);
     const { runContractFunction } = useWeb3Contract();
     const dispatch = useNotification();
-
-    console.log(data);
+    const [formKey, setFormKey] = useState(0);
 
     async function vote(data) {
         const candidateId = data.data[0].inputResult;
@@ -45,6 +45,7 @@ export default function Home() {
             onSuccess: () => handleVoteSuccess(),
             onError: (error) => handleVoteFailure(error),
         });
+        setFormKey(formKey + 1);
     }
 
     async function handleVoteSuccess() {
@@ -113,6 +114,7 @@ export default function Home() {
                                 noPagination
                             />
                             <Form
+                                key={formKey}
                                 buttonConfig={{
                                     text: "Vote",
                                     theme: "primary",
