@@ -33,7 +33,7 @@ yarn hardhat deploy --network goerli
 
 ## 3. Add .env file
 
-### Create a `.env` file and place your temporary query URL into it as `NEXT_PUBLIC_SUBGRAPH_URL`.
+### Create a `.env` file and place your temporary query URL into it as `NEXT_PUBLIC_SUBGRAPH_URL`. You can find temporary query url in [subgraph studio](https://thegraph.com/studio/)
 
 ## 4. Start your UI
 
